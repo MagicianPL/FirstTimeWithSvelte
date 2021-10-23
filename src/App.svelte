@@ -77,6 +77,7 @@ const src = "./favicon.png";
 	</section>
 
 	<section>
+<div class="max-wrapper">
 	<p>Counter: {count}</p>
 	
 	<div class="actions">
@@ -87,6 +88,7 @@ const src = "./favicon.png";
 		}}>DECREASE BY 3</button>
 		
 	</div>
+</div>
 	</section>
 	<section>
 		<h1>Let's fetch some data!</h1>
@@ -110,10 +112,18 @@ section {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	padding: 8px;
+}
+
+@media (max-width: 400px) {
+	section {
+		justify-content: flex-start;
+		padding-top: 20px;
+	}
 }
 
 img {
-	align-self: flex-start;
+	align-self: center;
 	width: 8rem;
 }
 
@@ -153,6 +163,7 @@ img {
 		background: #d4d4d4;
 		transition: background 0.3s;
 		font-size: 2rem;
+		margin-bottom: 18px;
 	}
 
 	button:hover {
@@ -165,6 +176,13 @@ img {
 		justify-content: space-around;
 	}
 
+	@media (max-width: 900px) {
+		.actions {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
 	section {
 		padding-bottom: 50px;
 		min-height: 50vh;
@@ -173,6 +191,12 @@ img {
 	section:nth-child(2n) {
 		background: #F5F5F5;
 		padding-top: 30px;
+	}
+
+	@media (max-width: 400px) {
+		section:nth-child(2n) {
+			padding-top: 40px;
+		}
 	}
 
 	section:nth-child(2) p {
@@ -187,6 +211,12 @@ img {
 
 	.type {
 		font-size: 2rem;
+	}
+
+	.max-wrapper {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
 	}
 
 
