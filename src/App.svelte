@@ -106,16 +106,6 @@ const src = "./favicon.png";
 
 <style>
 
-html {
-	font-size: 62.5%;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 section {
 	display: flex;
 	justify-content: center;
@@ -124,18 +114,18 @@ section {
 
 img {
 	align-self: flex-start;
-	width: 80px;
+	width: 8rem;
 }
 
 	h1 {
-		font-size: 45px;
+		font-size: 5.5rem;
 		text-align: center;
-		margin-bottom: 20px;
+		margin-bottom: 2rem;
 		color: #ACACAC;
 	}	
 
-	p, .infinite-wrapper > p {
-		font-size: 26px;
+	:global(p) {
+		font-size: 2.6rem;
 		text-align: center;
 		color: #97c2b6;
 		margin-bottom: 24px;
@@ -147,6 +137,7 @@ img {
 		margin-bottom: 20px;
 		padding: 7px;
 		border-radius: 5px;
+		font-size: 1.8rem;
 	}
 
 	input:focus {
@@ -154,13 +145,14 @@ img {
 	}
 
 	button {
-		width: 220px;
+		width: 28rem;
 		max-width: 90%;
 		margin: 0 auto;
 		padding: 7px;
 		border-radius: 8px;
 		background: #d4d4d4;
 		transition: background 0.3s;
+		font-size: 2rem;
 	}
 
 	button:hover {
@@ -175,6 +167,7 @@ img {
 
 	section {
 		padding-bottom: 50px;
+		min-height: 50vh;
 	}
 
 	section:nth-child(2n) {
@@ -184,7 +177,7 @@ img {
 
 	section:nth-child(2) p {
 		color: #7fa69b;
-		font-size: 29px;
+		font-size: 2.9rem;
 		font-weight: bold;
 	}
 
@@ -193,7 +186,7 @@ img {
 	}
 
 	.type {
-		font-size: 20px;
+		font-size: 2rem;
 	}
 
 
