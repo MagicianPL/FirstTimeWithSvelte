@@ -1,5 +1,10 @@
+
+
 <script>
-	const src = "./favicon.png";
+import { onMount } from 'svelte';
+
+let infiniteWrapper;
+const src = "./favicon.png";
 	let name = "";
 	let secondName = "";
 	let count = (0);
@@ -39,6 +44,26 @@
 		.then(data => {activity = data.activity; type = data.type})
 	};
 
+	const getContent = () => {
+		let i = 0;
+		while (i < 25) {
+			const paragraph = document.createElement("p");
+			paragraph.innerText = "Lorem ipsum dolor sit amet.";
+			console.log(infiniteWrapper);
+			infiniteWrapper.append(paragraph);
+			i ++;
+		};
+	};
+
+	onMount(()=> {
+		getContent();
+		window.addEventListener("scroll", ()=>{
+			if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+				getContent();
+			}
+		})
+	});
+
 </script>
 
 <main>
@@ -47,7 +72,7 @@
 		<h1>Welcome to TSSAOTP!</h1>
 	<p>The Smallest Svelte Application On The Planet</p>
 	<h1>Hello {`${name} ${secondName}`}</h1>
-	<input type="text" on:input={handleInputChange} value={name} placeholder="Wpisz imię"/>
+	<input type="text" on:input={handleInputChange} value={name} placeholder="Write your name"/>
 	<button on:click={resetName}>Set name to UKNNOWN</button>
 	</section>
 
@@ -70,6 +95,12 @@
 			<p class="type"><strong>Type:</strong> {type}</p>
 		{/if}
 		<button on:click={handleIdeaFetch}>What I can do?</button>
+	</section>
+	<section>
+		<h1>Endless Scroll</h1>
+		<div class="infinite-wrapper" bind:this={infiniteWrapper}>
+		<p>Lorem Ipsum</p>
+		</div>
 	</section>
 </main>
 
@@ -103,9 +134,8 @@ img {
 		color: #ACACAC;
 	}	
 
-	p {
+	p, .infinite-wrapper > p {
 		font-size: 26px;
-		
 		text-align: center;
 		color: #97c2b6;
 		margin-bottom: 24px;
@@ -115,6 +145,8 @@ img {
 		display: block;
 		margin: 0 auto;
 		margin-bottom: 20px;
+		padding: 7px;
+		border-radius: 5px;
 	}
 
 	input:focus {
@@ -145,7 +177,7 @@ img {
 		padding-bottom: 50px;
 	}
 
-	section:nth-child(2) {
+	section:nth-child(2n) {
 		background: #F5F5F5;
 		padding-top: 30px;
 	}
