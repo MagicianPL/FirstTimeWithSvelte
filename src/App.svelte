@@ -2,12 +2,12 @@
 
 <script>
 import { onMount } from 'svelte';
+import HelloSection from "./components/HelloSection.svelte";
 
 let infiniteWrapper;
-let input;
-const src = "./favicon.png";
-	let name = "";
-	let secondName = "";
+
+
+	
 	let count = (0);
 	let activity = "";
 	let type = false;
@@ -24,18 +24,11 @@ const src = "./favicon.png";
 		count -= x;
 	}
 
-	const handleInputChange = e => {
-		name = e.target.value;
-	}
+	
 
-	const handleSecondInputChange = e => {
-		secondName = e.target.value;
-	}
+	
 
-	const resetName = () => {
-		name = "Unknown";
-		input.value="";
-	}
+	
 
 	const handleIdeaFetch = () => {
 		activity = "Please wait, loading...";
@@ -69,14 +62,7 @@ const src = "./favicon.png";
 </script>
 
 <main>
-	<section>
-	<img {src} alt="Svelte logo" />
-		<h1>Welcome to TSSAOTP!</h1>
-	<p>The Smallest Svelte Application On The Planet</p>
-	<h1>Hello {`${name} ${secondName}`}</h1>
-	<input type="text" on:input={handleInputChange} value={name} placeholder="Write your name" bind:this={input}/>
-	<button on:click={resetName}>Set name to UKNNOWN</button>
-	</section>
+	<HelloSection />
 
 	<section>
 <div class="max-wrapper">
@@ -110,7 +96,7 @@ const src = "./favicon.png";
 
 <style>
 
-section {
+:global(section) {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -118,24 +104,13 @@ section {
 }
 
 @media (max-width: 400px) {
-	section {
+	:global(section) {
 		justify-content: flex-start;
 		padding-top: 20px;
 	}
 }
 
-img {
-	align-self: flex-start;
-	width: 8rem;
-}
-
-@media (max-width: 600px) {
-	img {
-		align-self: center;
-	}
-}
-
-	h1 {
+	:global(h1) {
 		font-size: 5.5rem;
 		text-align: center;
 		margin-bottom: 2rem;
@@ -149,20 +124,9 @@ img {
 		margin-bottom: 24px;
 	}
 
-	input {
-		display: block;
-		margin: 0 auto;
-		margin-bottom: 20px;
-		padding: 7px;
-		border-radius: 5px;
-		font-size: 1.8rem;
-	}
+	
 
-	input:focus {
-		border: 1px solid grey;
-	}
-
-	button {
+	:global(button) {
 		width: 28rem;
 		max-width: 90%;
 		margin: 0 auto;
@@ -174,7 +138,7 @@ img {
 		margin-bottom: 18px;
 	}
 
-	button:hover {
+	:global(button:hover) {
 		background: #CECBCB;
 		cursor: pointer;
 	}
