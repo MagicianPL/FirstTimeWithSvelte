@@ -1,46 +1,15 @@
 <script>
-import { onMount } from 'svelte';
 import HelloSection from "./components/HelloSection.svelte";
 import CounterSection from "./components/CounterSection.svelte";
 import FetchSection from "./components/FetchSection.svelte";
-
-let infiniteWrapper;
-
-const getContent = () => {
-		let i = 0;
-		while (i < 25) {
-			const paragraph = document.createElement("p");
-			paragraph.innerText = "Lorem ipsum dolor sit amet.";
-			
-			infiniteWrapper.append(paragraph);
-			i ++;
-		};
-	};
-
-onMount(()=> {
-		getContent();
-		window.addEventListener("scroll", ()=>{
-			if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
-				
-				getContent();
-			}
-		})
-	});
+import EndlessScrollSection from "./components/EndlessScrollSection.svelte";
 </script>
 
 <main>
 	<HelloSection />
 	<CounterSection />
 	<FetchSection />
-
-	
-	
-	<section>
-		<h1>Endless Scroll</h1>
-		<div class="infinite-wrapper" bind:this={infiniteWrapper}>
-		<p>Lorem Ipsum</p>
-		</div>
-	</section>
+	<EndlessScrollSection />	
 </main>
 
 <style>
@@ -114,8 +83,4 @@ onMount(()=> {
 	:global(section:nth-child(3)) {
 		padding-top: 40px;
 	}
-
-	
-
-
 </style>
