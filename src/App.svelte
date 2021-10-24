@@ -1,35 +1,12 @@
-
-
 <script>
 import { onMount } from 'svelte';
 import HelloSection from "./components/HelloSection.svelte";
 import CounterSection from "./components/CounterSection.svelte";
+import FetchSection from "./components/FetchSection.svelte";
 
 let infiniteWrapper;
 
-
-	
-	
-	let activity = "";
-	let type = false;
-
-	
-
-	
-
-	
-
-	
-
-	const handleIdeaFetch = () => {
-		activity = "Please wait, loading...";
-		type = "";
-		fetch("https://www.boredapi.com/api/activity/")
-		.then(resp => resp.json())
-		.then(data => {activity = data.activity; type = data.type})
-	};
-
-	const getContent = () => {
+const getContent = () => {
 		let i = 0;
 		while (i < 25) {
 			const paragraph = document.createElement("p");
@@ -40,7 +17,7 @@ let infiniteWrapper;
 		};
 	};
 
-	onMount(()=> {
+onMount(()=> {
 		getContent();
 		window.addEventListener("scroll", ()=>{
 			if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
@@ -49,22 +26,15 @@ let infiniteWrapper;
 			}
 		})
 	});
-
 </script>
 
 <main>
 	<HelloSection />
 	<CounterSection />
+	<FetchSection />
 
 	
-	<section>
-		<h1>Let's fetch some data!</h1>
-		<p class="activity">{activity ? activity : "Click and get random activity idea"}</p>
-		{#if type}
-			<p class="type"><strong>Type:</strong> {type}</p>
-		{/if}
-		<button on:click={handleIdeaFetch}>What I can do?</button>
-	</section>
+	
 	<section>
 		<h1>Endless Scroll</h1>
 		<div class="infinite-wrapper" bind:this={infiniteWrapper}>
@@ -74,7 +44,6 @@ let infiniteWrapper;
 </main>
 
 <style>
-
 :global(section) {
 	display: flex;
 	justify-content: center;
@@ -144,10 +113,6 @@ let infiniteWrapper;
 
 	:global(section:nth-child(3)) {
 		padding-top: 40px;
-	}
-
-	.type {
-		font-size: 2rem;
 	}
 
 	
