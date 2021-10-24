@@ -4,6 +4,7 @@
 import { onMount } from 'svelte';
 
 let infiniteWrapper;
+let input;
 const src = "./favicon.png";
 	let name = "";
 	let secondName = "";
@@ -39,7 +40,7 @@ const src = "./favicon.png";
 	const handleIdeaFetch = () => {
 		activity = "Please wait, loading...";
 		type = "";
-		fetch("http://www.boredapi.com/api/activity/")
+		fetch("https://www.boredapi.com/api/activity/")
 		.then(resp => resp.json())
 		.then(data => {activity = data.activity; type = data.type})
 	};
@@ -49,7 +50,7 @@ const src = "./favicon.png";
 		while (i < 25) {
 			const paragraph = document.createElement("p");
 			paragraph.innerText = "Lorem ipsum dolor sit amet.";
-			console.log(infiniteWrapper);
+			
 			infiniteWrapper.append(paragraph);
 			i ++;
 		};
@@ -58,7 +59,8 @@ const src = "./favicon.png";
 	onMount(()=> {
 		getContent();
 		window.addEventListener("scroll", ()=>{
-			if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+			if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
+				
 				getContent();
 			}
 		})
@@ -72,7 +74,7 @@ const src = "./favicon.png";
 		<h1>Welcome to TSSAOTP!</h1>
 	<p>The Smallest Svelte Application On The Planet</p>
 	<h1>Hello {`${name} ${secondName}`}</h1>
-	<input type="text" on:input={handleInputChange} value={name} placeholder="Write your name"/>
+	<input type="text" on:input={handleInputChange} value={name} placeholder="Write your name" bind:this={input}/>
 	<button on:click={resetName}>Set name to UKNNOWN</button>
 	</section>
 
@@ -123,8 +125,14 @@ section {
 }
 
 img {
-	align-self: center;
+	align-self: flex-start;
 	width: 8rem;
+}
+
+@media (max-width: 600px) {
+	img {
+		align-self: center;
+	}
 }
 
 	h1 {
