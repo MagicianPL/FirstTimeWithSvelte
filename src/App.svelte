@@ -3,26 +3,17 @@
 <script>
 import { onMount } from 'svelte';
 import HelloSection from "./components/HelloSection.svelte";
+import CounterSection from "./components/CounterSection.svelte";
 
 let infiniteWrapper;
 
 
 	
-	let count = (0);
+	
 	let activity = "";
 	let type = false;
 
-	const increase = () => {
-		count += 1;
-	};
-
-	const decrease = () => {
-		count -= 1;
-	};
-
-	const decreaseBy = x => {
-		count -= x;
-	}
+	
 
 	
 
@@ -63,21 +54,9 @@ let infiniteWrapper;
 
 <main>
 	<HelloSection />
+	<CounterSection />
 
-	<section>
-<div class="max-wrapper">
-	<p>Counter: {count}</p>
 	
-	<div class="actions">
-		<button on:click={increase}>INCERASE</button>
-		<button on:click={decrease}>DECREASE</button>
-		<button on:click={() => {
-			decreaseBy(3);
-		}}>DECREASE BY 3</button>
-		
-	</div>
-</div>
-	</section>
 	<section>
 		<h1>Let's fetch some data!</h1>
 		<p class="activity">{activity ? activity : "Click and get random activity idea"}</p>
@@ -101,6 +80,8 @@ let infiniteWrapper;
 	justify-content: center;
 	flex-direction: column;
 	padding: 8px;
+	padding-bottom: 50px;
+	min-height: 50vh;
 }
 
 @media (max-width: 400px) {
@@ -143,41 +124,25 @@ let infiniteWrapper;
 		cursor: pointer;
 	}
 
-	.actions {
-		display: flex;
-		justify-content: space-around;
-	}
 
-	@media (max-width: 900px) {
-		.actions {
-			flex-direction: column;
-			align-items: center;
-		}
-	}
-
-	section {
-		padding-bottom: 50px;
-		min-height: 50vh;
-	}
-
-	section:nth-child(2n) {
+	:global(section:nth-child(2n)) {
 		background: #F5F5F5;
 		padding-top: 30px;
 	}
 
 	@media (max-width: 400px) {
-		section:nth-child(2n) {
+		:global(section:nth-child(2n)) {
 			padding-top: 40px;
 		}
 	}
 
-	section:nth-child(2) p {
+	:global(section:nth-child(2) p) {
 		color: #7fa69b;
 		font-size: 2.9rem;
 		font-weight: bold;
 	}
 
-	section:nth-child(3) {
+	:global(section:nth-child(3)) {
 		padding-top: 40px;
 	}
 
@@ -185,11 +150,7 @@ let infiniteWrapper;
 		font-size: 2rem;
 	}
 
-	.max-wrapper {
-		width: 100%;
-		max-width: 1200px;
-		margin: 0 auto;
-	}
+	
 
 
 </style>
